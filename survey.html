@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GMU Computer Science Department</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <h1>George Mason University Survey</h1>
+        <p><strong>Required fields are marked with *</strong></p>
+        <form>
+            <!--Username-->
+            <label> Username* </label>
+            <input type="text" name="username" required />
+
+            <label for="grad_month">Graduation Date
+                <input type="text" placeholder="Select a month" list="months">
+                <datalist id="months">
+                    <option value="January">
+                    <option value="February">
+                    <option value="March">
+                    <option value="April">
+                    <option value="May">
+                    <option value="June">
+                    <option value="July">
+                    <option value="August">
+                    <option value="September">
+                    <option value="October">
+                    <option value="November">
+                    <option value="December">
+
+                </datalist>
+
+                <input type="text" placeholder="####">
+            </label>
+
+            <!--Street Address, City-->
+            <p><label>Street Address*</label>
+                <input type="text" name="streetaddress" required />
+                <label>City* </label>
+                <input type="text" name="city" required />
+
+                <!--TODO - Adjust Width of form-->
+            </p>
+            <!--State and Zip Code-->
+            <p>
+                <label>State* </label>
+                <input type="text" name="state" required />
+
+                <label>Zip Code* </label>
+                <input type="text" name="zip_code" required />
+
+            </p>
+
+            <!--Email and Telephone #-->
+            <p>
+                <label>Email*</label>
+                <input type="email" name="email" placeholder="name@domain.com" required />
+
+                <label> Telephone #*</label>
+                <input type="tel" placeholder="(###) ###-####" name="telephone_num" pattern="\(\d{3}\) +\d{3}-\d{4}"
+                    required />
+            </p>
+
+            <!--URL and Survey Date-->
+            <p>
+                <label>URL</label>
+                <input type="url" placeholder="http://www.domain.com">
+
+                <label>Date of Survey*</label>
+                <input type="date" required>
+
+            </p>
+            <!--Likes-->
+            <label>What do you like about the campus?</label>
+            <p>
+                <label> Student </label> <input type=checkbox>
+                <label> Location </label> <input type=checkbox>
+                <label> Campus </label> <input type=checkbox>
+                <label> Atmosphere </label> <input type=checkbox>
+                <label> Dorms </label> <input type=checkbox>
+                <label> Sports </label> <input type=checkbox>
+            </p>
+
+            <!--Interests-->
+            <p>
+                <label>
+                    What made you interested with George Mason University?</label>
+            </p>
+            <p>
+                <input type=radio name="interests" value="friends" />
+                <label>Friends</label>
+
+                <input type=radio name="interests" value="tv" />
+                <label>TV</label>
+
+
+                <input type=radio name="interests" value="internet" />
+                <label>Internet</label>
+
+                <input type=radio name="interests" value="other" />
+                <label>Others</label>
+            </p>
+
+            <!--Comments-->
+            <p>
+                <label>Comments</label> <br />
+                <textarea rows="4" cols="36">Enter Comments here.</textarea>
+            </p>
+
+            <!--Submit button.-->
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+
+    </div>
+
+
+</body>
+
+</html>
