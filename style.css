@@ -1,10 +1,18 @@
 
 h1{
     color: #006633;
+    background-color: #FFCC33;
     text-align: center;
     border: #006633 5px solid;
+    box-shadow: 5px 10px;
+    width: auto;
 }
 
 h3{
     text-decoration: underline;
 }
+body {
+    background-color: lightblue;
+}
+
+/* cs_dept.html */
