@@ -13,122 +13,124 @@
 <body>
 
     <div class="container-fluid">
-        <h1>George Mason University Survey</h1>
+        <h1>GMU Computer Science Dept. Survey</h1>
         <p><strong>Required fields are marked with *</strong></p>
-        <form autocomplete="on">
-            <!--Username-->
-            <label> Username* </label>
-            <input type="text" name="username" required autofocus="True" />
+        <div class="form">
+            <form autocomplete="on">
+                <!--Username-->
+                <label> Username* </label>
+                <input type="text" name="username" required autofocus="True" />
 
-            <label for="grad_month">Graduation Date
-                <input type="text" placeholder="Select a month" list="months">
-                <datalist id="months">
-                    <option value="January">
-                    <option value="February">
-                    <option value="March">
-                    <option value="April">
-                    <option value="May">
-                    <option value="June">
-                    <option value="July">
-                    <option value="August">
-                    <option value="September">
-                    <option value="October">
-                    <option value="November">
-                    <option value="December">
+                <label for="grad_month">Graduation Date
+                    <input type="text" placeholder="Select a month" list="months">
+                    <datalist id="months">
+                        <option value="January">
+                        <option value="February">
+                        <option value="March">
+                        <option value="April">
+                        <option value="May">
+                        <option value="June">
+                        <option value="July">
+                        <option value="August">
+                        <option value="September">
+                        <option value="October">
+                        <option value="November">
+                        <option value="December">
 
-                </datalist>
+                    </datalist>
 
-                <input type="text" placeholder="####">
-            </label>
-
-
-            <!--Street Address, City-->
-            <br />
-            <label>Street Address*</label>
-            <input type="text" name="streetaddress" required />
-            <label>City* </label>
-            <input type="text" name="city" required />
-
-            <!--TODO - Adjust Width of form-->
-            <!--State and Zip Code-->
-            <br />
-            <label>State* </label>
-            <input type="text" name="state" required />
-
-            <label>Zip Code* </label>
-            <input type="text" name="zip_code" required />
+                    <input type="text" placeholder="####">
+                </label>
 
 
-            <!--Email and Telephone #-->
-            <br />
-            <label>Email*</label>
-            <input type="email" name="email" placeholder="name@domain.com" required />
+                <!--Street Address, City-->
+                <br />
+                <label>Street Address*</label>
+                <input type="text" name="streetaddress" required />
+                <label>City* </label>
+                <input type="text" name="city" required />
 
-            <label> Telephone #*</label>
-            <input type="tel" placeholder="(###) ###-####" name="telephone_num" pattern="\(\d{3}\) +\d{3}-\d{4}"
-                required />
+                <!--TODO - Adjust Width of form-->
+                <!--State and Zip Code-->
+                <br />
+                <label>State* </label>
+                <input type="text" name="state" required />
 
-            <!--URL and Survey Date-->
-            <br />
-            <label>URL</label>
-            <input type="url" placeholder="http://www.domain.com">
-
-            <label>Date of Survey*</label>
-            <input type="date" required>
-
-            <!--Likes-->
-            <label>What do you like about the campus?</label>
-            <br />
-            <label> Student </label> <input type=checkbox>
-            <label> Location </label> <input type=checkbox>
-            <label> Campus </label> <input type=checkbox>
-            <label> Atmosphere </label> <input type=checkbox>
-            <label> Dorms </label> <input type=checkbox>
-            <label> Sports </label> <input type=checkbox>
-
-            <!--Interests-->
-            <label>
-                What made you interested with George Mason University?</label>
-            <input type=radio name="interests" value="friends" />
-            <label>Friends</label>
-
-            <input type=radio name="interests" value="tv" />
-            <label>TV</label>
+                <label>Zip Code* </label>
+                <input type="text" name="zip_code" required />
 
 
-            <input type=radio name="interests" value="internet" />
-            <label>Internet</label>
+                <!--Email and Telephone #-->
+                <br />
+                <label>Email*</label>
+                <input type="email" name="email" placeholder="name@domain.com" required />
 
-            <input type=radio name="interests" value="other" />
-            <label>Others</label>
+                <label> Telephone #*</label>
+                <input type="tel" placeholder="(###) ###-####" name="telephone_num" pattern="\(\d{3}\) +\d{3}-\d{4}"
+                    required />
 
-            <!--Recommendation-->
-            <br />
-            <label> How likely are you going to recommend the school?</label>
+                <!--URL and Survey Date-->
+                <br />
+                <label>URL</label>
+                <input type="url" placeholder="http://www.domain.com">
 
-            <select name="rating">
+                <label>Date of Survey*</label>
+                <input type="date" required>
 
-                <option>Very Likely</option>
-                <option>Likely</option>
-                <option>Unlikely</option>
-            </select>
+                <!--Likes-->
+                <label>What do you like about the campus?</label>
+                <br />
+                <label> Student </label> <input type=checkbox>
+                <label> Location </label> <input type=checkbox>
+                <label> Campus </label> <input type=checkbox>
+                <label> Atmosphere </label> <input type=checkbox>
+                <label> Dorms </label> <input type=checkbox>
+                <label> Sports </label> <input type=checkbox>
 
-            <!--Raffle-->
-            <br />
-            <label>Raffle (Ten Numbers between [1,100])</label>
-            <input type="text" name="raffle" placeholder="#,#,#,#,#,#,#,#,#,#" required />
+                <!--Interests-->
+                <label>
+                    What made you interested with George Mason University?</label>
+                <input type=radio name="interests" value="friends" />
+                <label>Friends</label>
 
-            <!--Comments-->
-            <br />
-            <label>Comments</label> <br />
-            <textarea rows="4" cols="36">Enter Comments here.</textarea>
-
-            <!--Submit button.-->
-            <br />
-            <input type="submit" value="Submit" />
+                <input type=radio name="interests" value="tv" />
+                <label>TV</label>
 
 
-        </form>
+                <input type=radio name="interests" value="internet" />
+                <label>Internet</label>
+
+                <input type=radio name="interests" value="other" />
+                <label>Others</label>
+
+                <!--Recommendation-->
+                <br />
+                <label> How likely are you going to recommend the school?</label>
+
+                <select name="rating">
+
+                    <option>Very Likely</option>
+                    <option>Likely</option>
+                    <option>Unlikely</option>
+                </select>
+
+                <!--Raffle-->
+                <br />
+                <label>Raffle (Ten Numbers between [1,100])</label>
+                <input type="text" name="raffle" placeholder="#,#,#,#,#,#,#,#,#,#" required />
+
+                <!--Comments-->
+                <br />
+                <label>Comments</label> <br />
+                <textarea rows="4" cols="36">Enter Comments here.</textarea>
+
+                <!--Submit button.-->
+                <br />
+                <input type="submit" value="Submit" />
+
+
+            </form>
+        </div>
 
     </div>
 
