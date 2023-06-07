@@ -21,9 +21,10 @@
                 <!--Username-->
                 <label> Username* </label>
                 <input type="text" name="username" required autofocus="True" />
-
-                <label for="grad_month">Graduation Date
-                    <input type="text" placeholder="Select a month" list="months">
+                
+                <label for="grad_month">Graduation Date*
+                    <!-- graduation month -->
+                    <input type="text" placeholder="Select a month" list="months" required/>
                     <datalist id="months">
                         <option value="January">
                         <option value="February">
@@ -40,20 +41,17 @@
 
                     </datalist>
 
-                    <input type="text" placeholder="####">
+                    <!-- graduation year -->
+                    <input type="text" placeholder="####" required>
                 </label>
 
 
-                <!--Street Address, City-->
+                <!-- Address info-->
                 <br />
                 <label>Street Address*</label>
                 <input type="text" name="streetaddress" required />
                 <label>City* </label>
                 <input type="text" name="city" required />
-
-                <!--TODO - Adjust Width of form-->
-                <!--State and Zip Code-->
-                <br />
                 <label>State* </label>
                 <input type="text" name="state" required />
 
@@ -91,8 +89,8 @@
                 <!--Interests-->
                 <br/>
                 <label>
-                    What made you interested with George Mason University?</label>
-                <input type=radio name="interests" value="friends" />
+                    What made you interested with George Mason University?*</label>
+                <input type=radio name="interests" value="friends" required/>
                 <label>Friends</label>
 
                 <input type=radio name="interests" value="tv" />
@@ -107,9 +105,9 @@
 
                 <!--Recommendation-->
                 <br/>
-                <label> How likely are you going to recommend the school?</label>
+                <label> How likely are you going to recommend the school?*</label>
 
-                <select name="rating">
+                <select name="rating" required>
 
                     <option>Very Likely</option>
                     <option>Likely</option>
