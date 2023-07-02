@@ -15,7 +15,41 @@
     
     <!-- User greeting. -->
     <script type="text/javascript">
-        document.writeln("<h2> Welcome to JavaScript Programming. </h2>")
+
+        var now = new Date();
+        var hour = now.getHours();
+        var name;
+
+        document.write("<h2> ")
+        if (hour < 12)
+            document.write("Good Morning ")
+        else{
+            hour -= 12
+
+            if (hour<6){
+                document.write("Good Afternoon ");
+            }
+            else
+                document.write("Good Evening ");
+        }
+
+        // Find the name from cookie.
+        if (document.cookie){
+
+            var myCookie = unescape(document.cookie);
+
+            var cookieTokens = myCookie.split("=");
+
+            name = cookieTokens[1];
+
+        } else{
+            name = window.prompt("Please enter you rname");
+
+            document.cookie = "name=" + escape(name)
+
+        }
+
+        document.write(name + ", welcome to SWE642 survey. </h2>")
     </script>
 </head>
 
