@@ -16,11 +16,15 @@
     <!-- User greeting. -->
     <script type="text/javascript">
 
+        // Grab today's date.
         var now = new Date();
         var hour = now.getHours();
         var name;
 
-        document.write("<h2> ")
+        // Start of writing greeting.
+        document.write("<h3> ")
+
+        // Distinguish time of day.
         if (hour < 12)
             document.write("Good Morning ")
         else{
@@ -34,23 +38,38 @@
         }
 
         // Find the name from cookie.
-        if (document.cookie){
+        if (document.cookie){ // if cookie exists
 
+            // Convert escapd characters to English notation
             var myCookie = unescape(document.cookie);
 
+            // Split the token and grab the name from cookie.
             var cookieTokens = myCookie.split("=");
 
             name = cookieTokens[1];
 
-        } else{
-            name = window.prompt("Please enter you rname");
+        } else{ // Cookie doesn't exists
+            name = window.prompt("Please enter your name");
 
-            document.cookie = "name=" + escape(name)
+            document.cookie = "name=" + escape(name);
 
         }
 
-        document.write(name + ", welcome to SWE642 survey. </h2>")
+        document.writeln(name + ", welcome to SWE642 survey. </h3>");
+
+        // Wrong ID/cookie script.
+        document.writeln("<a href='javascript:wrongID()'>" + "Click here to change user. Current User:" + name + "<\a>" );
+
+        function wrongID(){
+            // Erase cookie
+            document.cookie = "name=null;" + " expires=Thu, 01-Jan-95 00:00:01 GMT";
+
+            // Reload page.
+            location.reload();
+        }
+
     </script>
+    <!-- END OF Greeting. -->
 </head>
 
 <body>
