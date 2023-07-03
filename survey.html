@@ -182,7 +182,12 @@
                 <label>Raffle (Ten Numbers between [1,100])</label>
                 <input type="text" name="raffle" id="raffle_num" placeholder="#,#,#,#,#,#,#,#,#,#" onchange="raffle_handler()"/>
 
-                <!--Comments-->
+                <!-- Average and Max of Raffle labels. -->
+                <br />
+                <label id="avg_output_lbl">  </label>
+                <label id="max_output_lbl">  </label>
+
+                <!--Additional Comments-->
                 <br />
                 <label>Comments</label> <br />
                 <textarea rows="4" cols="36" placeholder="Enter Comments here."></textarea>
@@ -206,35 +211,43 @@
     <!-- Start of JS -->
     <script type="text/javascript">
 
+        /**
+         * Raffle Handler when the input is changed.
+         */
         function raffle_handler() {
             var html_obj = document.getElementById("raffle_num");
             
             var num_array = process_raffle_input(html_obj);
-            
+
             // Error encountered.
-            if (num_array == False){
+            if (typeof num_array === "string"){
+                alert(num_array);
                 return;
             }
-
+            
+            // Process num_array and display it into HTML output.
+            generate_raffle_output(num_array);
 
         }
 
         /**
          * Process raffle object and return the int array (int []).
          * Returns:
-         *    - False if error present.
+         *    - string if Error recieved, return error message.
          *    - int[] - If operation is sucessful.
          */
         function process_raffle_input(html_obj){
             
-
             input_string = html_obj.value;
             var num_tokens = input_string.split(",");
             
             // Validate token size.
+            var error_msg = "";
+            
             if(num_tokens.length < 10){
-                alert("Invalid raffle input.")
-                return False;
+                // alert("Invalid raffle input length.");
+                error_msg = "Invalid raffle input length."
+                return error_msg;
             }
             
             var output_array = [] 
@@ -244,16 +257,16 @@
 
                 // Exception handling - Validate text input.
                 if(output_array[i] == NaN){
-                    alert("One of the raffle input is not a number.");
+                    error_msg = "One of the raffle input is not a number."
+                    
 
-                    return False;
+                    return error_msg;
                 }
 
                 if(output_array[i] < 1 || output_array[i] > 100){
-                    var error_messaage = "Output " + output_array[i] + " is not within the range [0,100]";
-                    alert(error_messaage);
+                    error_msg = "Output " + output_array[i] + " is not within the range [0,100]";
                     // html_object.value = "";
-                    return False;
+                    return error_msg;
                 }
 
             }
@@ -262,7 +275,27 @@
 
         }
 
-        
+        /**
+         * Process the HTML output for the Raffle. Currently supports average and max. 
+         */
+        function generate_raffle_output(num_array){
+            // Calculate the max and average number.
+            var max_num = Math.max.apply(null, num_array);
+
+            // Sum
+            const f_array_avg = array => array.reduce((a,b) => a+b) / array.length; 
+
+            var avg_num = f_array_avg(num_array);
+            
+            // HTML OUTPUT.
+            // Reassign average label.
+            document.getElementById('avg_output_lbl').innerHTML = "Raffle Average Number: " + avg_num;
+
+            // Reassign max label.
+            document.getElementById('max_output_lbl').innerHTML = " Raffle Max Number: " + max_num;
+
+
+        }
 
 
     </script>
