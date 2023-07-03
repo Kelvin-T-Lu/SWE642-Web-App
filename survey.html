@@ -215,6 +215,8 @@
             if (num_array == False){
                 return;
             }
+
+
         }
 
         /**
@@ -247,8 +249,8 @@
                     return False;
                 }
 
-                if(output_array[i] < 0 || output_array > 100){
-                    var error_messaage = "Output " + output_array[i] + "is not within the range [0,100]";
+                if(output_array[i] < 1 || output_array[i] > 100){
+                    var error_messaage = "Output " + output_array[i] + " is not within the range [0,100]";
                     alert(error_messaage);
                     // html_object.value = "";
                     return False;
