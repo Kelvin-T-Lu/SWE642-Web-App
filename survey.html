@@ -180,7 +180,7 @@
                 <!--Raffle-->
                 <br />
                 <label>Raffle (Ten Numbers between [1,100])</label>
-                <input type="text" name="raffle" placeholder="#,#,#,#,#,#,#,#,#,#" />
+                <input type="text" name="raffle" id="raffle_num" placeholder="#,#,#,#,#,#,#,#,#,#" onchange="raffle_handler()"/>
 
                 <!--Comments-->
                 <br />
@@ -203,6 +203,67 @@
 
     </div>
 
+    <!-- Start of JS -->
+    <script type="text/javascript">
+
+        function raffle_handler() {
+            var html_obj = document.getElementById("raffle_num");
+            
+            var num_array = process_raffle_input(html_obj);
+            
+            // Error encountered.
+            if (num_array == False){
+                return;
+            }
+        }
+
+        /**
+         * Process raffle object and return the int array (int []).
+         * Returns:
+         *    - False if error present.
+         *    - int[] - If operation is sucessful.
+         */
+        function process_raffle_input(html_obj){
+            
+
+            input_string = html_obj.value;
+            var num_tokens = input_string.split(",");
+            
+            // Validate token size.
+            if(num_tokens.length < 10){
+                alert("Invalid raffle input.")
+                return False;
+            }
+            
+            var output_array = [] 
+            // Process string to array of ints.
+            for (var i = 0; i<num_tokens.length; i++){
+                output_array[i] = parseInt(num_tokens[i]);
+
+                // Exception handling - Validate text input.
+                if(output_array[i] == NaN){
+                    alert("One of the raffle input is not a number.");
+
+                    return False;
+                }
+
+                if(output_array[i] < 0 || output_array > 100){
+                    var error_messaage = "Output " + output_array[i] + "is not within the range [0,100]";
+                    alert(error_messaage);
+                    // html_object.value = "";
+                    return False;
+                }
+
+            }
+
+            return output_array;
+
+        }
+
+        
+
+
+    </script>
 
 </body>
 
