@@ -6,7 +6,7 @@ Dockerfile - Build the docker image and deploy war file to a local docker instan
 
 Create and compile WAR file - 
     - Set up java enviroment.
-    - Run jar -cvf *
+    - Run jar -cvf swe_klu21.war *
 
 Deploy WAR file (Windows) - 
     - Use SCP program to access EC2 instance.
