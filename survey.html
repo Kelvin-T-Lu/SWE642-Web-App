@@ -312,6 +312,7 @@
             validate_grad_year();
             validate_address();
             validate_email_field();
+            validate_likes_field();
 
 
         }
@@ -371,6 +372,21 @@
 
         function validate_likes_field(){
 
+            // ASSUMPTION - At least 2 checkbox are checked.
+
+            var count = 0;
+
+            
+            input_checkboxes = document.getElementsByName("likes");
+            for(var i = 0; i<input_checkboxes.length; i++){
+                if (input_checkboxes[i].checked == true){
+                    count++;
+                }
+            }
+
+            if (count<2){
+                alert("Two checkboxes must be checked.");
+            }
 
         }
 
