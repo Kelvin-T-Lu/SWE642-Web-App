@@ -128,7 +128,7 @@
                 <!--Email and Telephone #-->
                 <br />
                 <label>Email*</label>
-                <input type="email" name="email" placeholder="name@domain.com" required />
+                <input type="email" name="email" id="email_input" placeholder="name@domain.com" required />
 
                 <label> Telephone #*</label>
                 <input type="tel" placeholder="(###) ###-####" name="telephone_num" pattern="\(\d{3}\) +\d{3}-\d{4}"
@@ -312,12 +312,14 @@
 
             validate_address();
 
+            validate_email_field();
+
         }
 
         function validate_name_field(){
 
             // if first name doesn't have letters only.
-            first_name_str = document.getElementById("first_name_input").value
+            first_name_str = document.getElementById("first_name_input").value;
             if (!/^[a-zA-Z]+$/.test(first_name_str)){
 
                 alert("First name can only contain alphanumeric values.");
@@ -328,7 +330,7 @@
             }
 
             // If last name doesn't have letters only.
-            last_name_str = document.getElementById("last_name_input").value
+            last_name_str = document.getElementById("last_name_input").value;
             if (!/^[a-zA-Z]+$/.test(last_name_str)) {
                 alert("Last name can only contain alphanumeric values.");
 
@@ -342,7 +344,17 @@
         
         function validate_email_field(){
 
+            email_address_str = document.getElementById("email_input");
+            email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(!email_address_str.value.match(email_regex)){
 
+                alert("Email address is not in the right format.");
+
+                document.getElementById("email_input").value= "";
+
+            }
+
+            return;
         }
 
         function validate_likes_field(){
