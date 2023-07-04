@@ -115,14 +115,14 @@
                 <!-- Address info-->
                 <br />
                 <label>Street Address*</label>
-                <input type="text" name="streetaddress" required />
+                <input type="text" name="streetaddress" id = "street_address_input" required />
                 <label>City* </label>
-                <input type="text" name="city" required />
+                <input type="text" name="city" id="city_input" required />
                 <label>State* </label>
-                <input type="text" name="state" required />
+                <input type="text" name="state" id="state_input"" required />
 
                 <label>Zip Code* </label>
-                <input type="text" name="zip_code" required />
+                <input type="text" name="zip_code" id="zip_input" required />
 
 
                 <!--Email and Telephone #-->
@@ -145,12 +145,12 @@
                 <!--Likes-->
                 <br />
                 <label>What do you like about the campus?*</label>
-                <label> Student </label> <input type=checkbox>
-                <label> Location </label> <input type=checkbox>
-                <label> Campus </label> <input type=checkbox>
-                <label> Atmosphere </label> <input type=checkbox>
-                <label> Dorms </label> <input type=checkbox>
-                <label> Sports </label> <input type=checkbox>
+                <input type=checkbox name="likes" value="student"/> <label> Student </label> 
+                <input type=checkbox name="likes" value="location"/> <label> Location </label> 
+                <input type=checkbox name="likes" value="campus"/> <label> Campus </label> 
+                <input type=checkbox name="likes" value="atmosphere"/> <label> Atmosphere </label> 
+                <input type=checkbox name="likes" value="dorms"/> <label> Dorms </label> 
+                <input type=checkbox name="likes" value="sports"/> <label> Sports </label> 
 
                 <!--Interests-->
                 <br />
@@ -310,6 +310,8 @@
             
             validate_name_field();
 
+            validate_address();
+
         }
 
         function validate_name_field(){
@@ -318,7 +320,7 @@
             first_name_str = document.getElementById("first_name_input").value
             if (!/^[a-zA-Z]+$/.test(first_name_str)){
 
-                alert("First name can be alphabetical only.");
+                alert("First name can only contain alphanumeric values.");
                 
                 // Clear first name input field.
                 document.getElementById("first_name_input").value = "";
@@ -328,7 +330,7 @@
             // If last name doesn't have letters only.
             last_name_str = document.getElementById("last_name_input").value
             if (!/^[a-zA-Z]+$/.test(last_name_str)) {
-                alert("Last name can be alphabetical only.");
+                alert("Last name can only contain alphanumeric values.");
 
                 // Clear last name input field.
                 document.getElementById("last_name_input").value = "";
@@ -337,6 +339,7 @@
             return;
         }
 
+        
         function validate_email_field(){
 
 
@@ -352,6 +355,46 @@
         }
 
         function validate_address(){
+            
+            // Validate street address.
+            street_address_str = document.getElementById("street_address_input").value;
+            if (!/^[A-Za-z0-9 ]*$/.test(street_address_str)){
+                alert("Street address can only contain alphanumeric values.");
+
+                // Clear first name input field.
+                document.getElementById("street_address_input").value = "";
+
+            }
+
+            // Validate city input.
+            city_str = document.getElementById("city_input").value;
+            if (!/^[A-Za-z]*$/.test(city_str)) {
+                alert("City can only contain alphabetical values.");
+
+                // Clear first name input field.
+                document.getElementById("city_input").value = "";
+
+            }
+
+            // Validate state.
+            state_str = document.getElementById("state_input").value;
+            if (!/^[A-Za-z]*$/.test(state_str)) {
+                alert("State can only contain alphabetical values.");
+
+                // Clear first name input field.
+                document.getElementById("state_input").value = "";
+
+            }
+
+            // Validate Zip code.
+            zip_str = document.getElementById("zip_input").value;
+            if (!/^[0-9]*$/.test(zip_str)) {
+                alert("Zip can only contain numerical values.");
+
+                // Clear first name input field.
+                document.getElementById("zip_input").value = "";
+
+            }
 
         }
 
