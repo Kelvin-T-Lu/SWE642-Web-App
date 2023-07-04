@@ -108,7 +108,7 @@
                     </datalist>
 
                     <!-- graduation year -->
-                    <input type="text" placeholder="####" required>
+                    <input type="text" placeholder="####" id="grad_year_input" required>
                 </label>
 
 
@@ -309,10 +309,10 @@
         function validate_form(){
             
             validate_name_field();
-
+            validate_grad_year();
             validate_address();
-
             validate_email_field();
+
 
         }
 
@@ -357,14 +357,23 @@
             return;
         }
 
+        function validate_grad_year(){
+
+            grad_year_str = document.getElementById("grad_year_input").value
+
+            if (!/^[0-9]{4}$/.test(grad_year_str)){
+                alert("Invalid graduation year.");
+
+                document.getElementById("grad_year_input").value="";
+            }
+
+        }
+
         function validate_likes_field(){
 
 
         }
 
-        function validate_interests_field(){
-
-        }
 
         function validate_address(){
             
