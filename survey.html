@@ -83,8 +83,11 @@
             <form autocomplete="on">
                 <!--Username-->
                 <label> Username* </label>
-                <input type="text" name="username" required autofocus="True" />
-
+                <input type="text" id="username" name="username" required autofocus="True" />
+                <label> First Name*</label>
+                <input type="text" id="first_name_input" name="first_name" required/>
+                <label> Last Name*</label>
+                <input type="text" id="last_name_input" name="last_name" required/>
                 <label for="grad_month">Graduation Date*
                     <!-- graduation month -->
                     <input type="text" placeholder="Select a month" list="months" required />
@@ -141,7 +144,7 @@
 
                 <!--Likes-->
                 <br />
-                <label>What do you like about the campus?</label>
+                <label>What do you like about the campus?*</label>
                 <label> Student </label> <input type=checkbox>
                 <label> Location </label> <input type=checkbox>
                 <label> Campus </label> <input type=checkbox>
@@ -155,14 +158,10 @@
                     What made you interested with George Mason University?*</label>
                 <input type=radio name="interests" value="friends" required />
                 <label>Friends</label>
-
                 <input type=radio name="interests" value="tv" />
                 <label>TV</label>
-
-
                 <input type=radio name="interests" value="internet" />
                 <label>Internet</label>
-
                 <input type=radio name="interests" value="other" />
                 <label>Others</label>
 
@@ -192,9 +191,10 @@
                 <label>Comments</label> <br />
                 <textarea rows="4" cols="36" placeholder="Enter Comments here."></textarea>
 
+                <!-- BUTTONS -->
                 <!--Submit button.-->
                 <br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" onclick="submit_form_handler()" />
 
                 <!--ResetButton-->
                 <input type="reset" />
@@ -297,6 +297,63 @@
 
         }
 
+        function submit_form_handler(){
+
+            validate_form();
+
+        }
+
+        /**
+         * Validate certain fields from the form.
+         */
+        function validate_form(){
+            
+            validate_name_field();
+
+        }
+
+        function validate_name_field(){
+
+            // if first name doesn't have letters only.
+            first_name_str = document.getElementById("first_name_input").value
+            if (!/^[a-zA-Z]+$/.test(first_name_str)){
+
+                alert("First name can be alphabetical only.");
+                
+                // Clear first name input field.
+                document.getElementById("first_name_input").value = "";
+                
+            }
+
+            // If last name doesn't have letters only.
+            last_name_str = document.getElementById("last_name_input").value
+            if (!/^[a-zA-Z]+$/.test(last_name_str)) {
+                alert("Last name can be alphabetical only.");
+
+                // Clear last name input field.
+                document.getElementById("last_name_input").value = "";
+            }
+
+            return;
+        }
+
+        function validate_email_field(){
+
+
+        }
+
+        function validate_likes_field(){
+
+
+        }
+
+        function validate_interests_field(){
+
+        }
+
+        function validate_address(){
+
+        }
 
     </script>
 
