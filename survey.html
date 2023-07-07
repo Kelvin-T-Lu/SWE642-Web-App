@@ -122,8 +122,8 @@
                 <input type="text" name="state" id="state_input"" required />
 
                 <label>Zip Code* </label>
-                <input type="text" name="zip_code" id="zip_input" required />
-
+                <input type="text" name="zip_code" id="zip_input" onblur="validateZip(this.value)" required />
+                <label id="validateZip" > </label> 
 
                 <!--Email and Telephone #-->
                 <br />
@@ -433,7 +433,92 @@
 
             }
 
+            
         }
+        zip_url = "/data/zip_codes.json"
+
+        function validateZip(zip) {
+
+            var params = '[{"param": "zipcodes", "value": "' + zip + '"}]';
+            callWebService("validateZip", params, showCityState);
+
+        }
+
+        function callWebService(method, paramString, callBack){
+
+
+            alert("Entered callwebservice");
+            console.log("Hello world.");
+            var requestURL = zip_url + "/" + method;
+            var params = paramString.parseJSON();
+            alert(params);
+            
+            alert("before params");
+            // build param string to add to url
+            for(var i=0; i<params.length; i++){
+                // checks the first parameter and adds to request url.
+                if(i==0){
+                    requestURL= requestURL + "?" + params[i].param + "=" + params[i].value;
+                }else{ // not the first param
+                    requestURL = requestURL + "&" + params[i].param + "=" + params[i].value;
+                }
+                alert("param running");
+            }
+
+            alert("Passed params");
+
+            // make async request
+            try{
+                var asyncRequest = new XMLHttpRequest();
+
+                // set callback function.
+                asyncRequest.onreadystatechange= function(){
+                    callBack(asyncRequest);
+                };
+
+                // send async request
+                asyncRequest.open("GET", requestURL, true);
+                asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8");
+                asyncRequest.send(); // Send the request.
+
+                alert("Sent xml request");
+            }//end try
+            catch(exception){
+                alert("Request failed");
+            }
+
+        }
+
+        function showCityState(asyncRequest){
+            document.getElementById("validateZip").innerHTML = "Checking Zip";
+
+            // if sucessful request, process response
+            if (asyncRequest.readyState==4){
+                if(asyncRequest.status ==200){
+                    // convert json to obj
+                    var data = asyncRequest.responseText.parseJSON();
+
+                    // zip in json.
+                    if(date.validity =="valid"){
+                        // zipValid = true;
+
+                        document.getElementById('validateZip').innerHTML= "";
+                        document.getElementById("city_input").innerHTML = data.city;
+                        document.getElementById("state_input").innerHTML = data.state;
+                    }
+                    else{
+                        document.getElementById("validateZip").innerHTML = data.ErrorText;
+                        
+                        // Clear state/city if exits.
+                        document.getElementById("city_input").innerHTML = data.city;
+                        document.getElementById("state_input").innerHTML = data.state;
+
+                    }
+                } else if (asyncRequest.status == 500) {
+                    document.getElementById('validateZip').innerHTML = "Zip validation service is not available.";
+                }
+            }
+            }
 
     </script>
 
