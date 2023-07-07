@@ -287,7 +287,7 @@ function validateZip(zip) {
     try {
         var asyncRequest = new XMLHttpRequest();
         asyncRequest.onreadystatechange = function () {
-            callBack(zip, asyncRequest);
+            call_back_handler(zip, asyncRequest)
         }; // end anonymous function
         asyncRequest.open("GET", "/data/zip_codes.json", true);
         asyncRequest.withCredentials = true;
@@ -298,6 +298,16 @@ function validateZip(zip) {
     }
 }
 
+function call_back_handler(zip, asyncRequest){
+    try{
+        callBack(zip, asyncRequest);
+
+    }catch(exception){
+        alert(exception);
+    }
+   
+    
+}
 
 function callBack(zip, asyncRequest) {
 
