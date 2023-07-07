@@ -9,3 +9,6 @@ HTML Files-
 External CSS-
     -style.css
 
+External JS -
+    script.js
+
