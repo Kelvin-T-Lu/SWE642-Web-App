@@ -1,5 +1,5 @@
 EC2 Homepage - https://ec2-3-92-221-242.compute-1.amazonaws.com/swe_klu21
-
+    -EC2 is not active.
 .devconatiner - Use to build java enviroment container for VSCode.
 
 Dockerfile - Build the docker image and deploy war file to a local docker instance.
