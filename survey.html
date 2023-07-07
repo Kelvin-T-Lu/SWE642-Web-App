@@ -123,7 +123,7 @@
 
                 <label>Zip Code* </label>
                 <input type="text" name="zip_code" id="zip_input" onblur="validateZip(this.value)" required />
-                <label id="validateZip" > </label> 
+                <label id="validate_zip_lbl" > </label> 
 
                 <!--Email and Telephone #-->
                 <br />
@@ -438,88 +438,76 @@
         zip_url = "/data/zip_codes.json"
 
         function validateZip(zip) {
-
-            var params = '[{"param": "zipcodes", "value": "' + zip + '"}]';
-            callWebService("validateZip", params, showCityState);
-
-        }
-
-        function callWebService(method, paramString, callBack){
-
-
-            alert("Entered callwebservice");
-            console.log("Hello world.");
-            var requestURL = zip_url + "/" + method;
-            var params = paramString.parseJSON();
-            alert(params);
-            
-            alert("before params");
-            // build param string to add to url
-            for(var i=0; i<params.length; i++){
-                // checks the first parameter and adds to request url.
-                if(i==0){
-                    requestURL= requestURL + "?" + params[i].param + "=" + params[i].value;
-                }else{ // not the first param
-                    requestURL = requestURL + "&" + params[i].param + "=" + params[i].value;
-                }
-                alert("param running");
-            }
-
-            alert("Passed params");
-
-            // make async request
             try{
                 var asyncRequest = new XMLHttpRequest();
+                asyncRequest.onreadystatechange = function(){
+                    test(zip, asyncRequest);
+                }; // end anonymous function
+                asyncRequest.open("GET", "/data/zip_codes.json", true);
+                asyncRequest.withCredentials = true;
+                asyncRequest.send();
+            } catch(exception){
+                alert(exception);
+                alert("Request failed.");
+            }
+        }
 
-                // set callback function.
-                asyncRequest.onreadystatechange= function(){
-                    callBack(asyncRequest);
-                };
+        function test(zip, asyncRequest){
 
-                // send async request
-                asyncRequest.open("GET", requestURL, true);
-                asyncRequest.setRequestHeader("Accept", "application/json; charset=utf-8");
-                asyncRequest.send(); // Send the request.
-
-                alert("Sent xml request");
-            }//end try
-            catch(exception){
-                alert("Request failed");
+            try{
+                callBack(zip, asyncRequest);
+            }catch(exception){
+                alert(exception);
             }
 
         }
 
-        function showCityState(asyncRequest){
-            document.getElementById("validateZip").innerHTML = "Checking Zip";
-
+        function callBack(zip, asyncRequest){
+            
+            // document.getElementById("zip_input").innerHTML = "Checking zip...";
+            document.getElementById("validate_zip_lbl").innerHTML = "Checking zip...";
+            document.getElementById("city_input").innerHTML = "";
+            document.getElementById("state_input").innerHTML = "";
+            
             // if sucessful request, process response
-            if (asyncRequest.readyState==4){
-                if(asyncRequest.status ==200){
-                    // convert json to obj
-                    var data = asyncRequest.responseText.parseJSON();
-
-                    // zip in json.
-                    if(date.validity =="valid"){
-                        // zipValid = true;
-
-                        document.getElementById('validateZip').innerHTML= "";
-                        document.getElementById("city_input").innerHTML = data.city;
-                        document.getElementById("state_input").innerHTML = data.state;
+            if (asyncRequest.readyState == 4) {
+                if (asyncRequest.status == 200) {
+                    var data = JSON.parse(asyncRequest.responseText);
+                    // Search inside JSON.
+                    result = isValid(zip, data);
+                    
+                    // if Zip code found.
+                    if (result.valid) {
+                        document.getElementById("city_input").value = result.city;
+                        document.getElementById("state_input").value = result.state;
+                        document.getElementById("validate_zip_lbl").innerHTML = "Zip found.";
+                    } else { // Zip code not found.
+                        document.getElementById("validate_zip_lbl").innerHTML = "Zip not found.";
                     }
-                    else{
-                        document.getElementById("validateZip").innerHTML = data.ErrorText;
-                        
-                        // Clear state/city if exits.
-                        document.getElementById("city_input").innerHTML = data.city;
-                        document.getElementById("state_input").innerHTML = data.state;
-
-                    }
-                } else if (asyncRequest.status == 500) {
-                    document.getElementById('validateZip').innerHTML = "Zip validation service is not available.";
                 }
             }
-            }
+        }
 
+        /**
+         * Search if zip code is in json.
+         * If true, return true, city, and state.
+         */
+        function isValid(zip, data_file){
+            var zipcodes = data_file.zipcodes;
+            for (var element of zipcodes){
+                if(element.zip === zip){
+                    
+                    return {
+                        valid: true,
+                        city: element.city,
+                        state: element.state 
+                    };
+                }
+            }
+            return{
+                valid:false
+            };
+        }
     </script>
 
 </body>
