@@ -1,3 +1,5 @@
+// Author - Kelvin Lu
+// *SURVEY COOKIE FUNCTIONS
 function survey_cookie_handler(){
     // Grab today's date.
     var now = new Date();
@@ -53,7 +55,7 @@ function wrongCookieID() {
     location.reload();
 }
 
-
+// *RAFFLE FUNCTIONS
 /**
         * Raffle Handler when the input is changed.
         */
@@ -140,6 +142,7 @@ function generate_raffle_output(num_array) {
 
 }
 
+// SURVEY VALIDATION FUNCTIONS 
 function submit_form_handler() {
 
     validate_form();
@@ -279,6 +282,7 @@ function validate_address() {
 
 }
 
+// *ZIP CODE VALIDATE ZIP FUNCTIONS 
 function validateZip(zip) {
     try {
         var asyncRequest = new XMLHttpRequest();
